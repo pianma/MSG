@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.msg.mapper.IndexMapper">
+    <resultMap id="memberResult" type="MemberVO">
+        <result column="id" property="id" />
+        <result column="name" property="name" />
+    </resultMap>
+
+<!--    <select id="getAllList" resultMap="memberResult">-->
+<!--        <![CDATA[-->
+<!--            SELECT * FROM MEMBER-->
+<!--        ]]>-->
+<!--    </select>-->
+    <select id="selectMemberList" resultType="MemberVO">
+        <![CDATA[
+            SELECT * FROM MEMBER
+        ]]>
+    </select>
+
+    <select id="selectMemberData" resultType="MemberVO" parameterType="java.lang.Long">
+        <![CDATA[
+            SELECT * FROM MEMBER WHERE id = #{id}
+        ]]>
+    </select>
+
+    <insert id="insertMemberData" parameterType="MemberVO">
+        <![CDATA[
+            INSERT INTO MEMBER VALUES (null, #{name})
+        ]]>
+    </insert>
+
+    <update id="updateMemberData" parameterType="MemberVO">
+        <![CDATA[
+            UPDATE MEMBER
+            SET name= #{name}
+            WHERE
+            id=#{id}
+        ]]>
+    </update>
+
+    <delete id="deleteMemberData" parameterType="java.lang.Long">
+        <![CDATA[
+            DELETE FROM MEMBER
+            WHERE
+            id=#{id}
+        ]]>
+    </delete>
+
+</mapper>
