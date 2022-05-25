@@ -1,0 +1,13 @@
+import {{basicpath}}.service;
+
+import java.util.List;
+
+public interface IndexService {
+
+List<MemberVO> get{{Member}}List();
+    MemberVO get{{Member}}Data(Long {{id}});
+    Integer add{{Member}}Data({{upperMember}} {{Member}}Dto);
+    Integer modify{{Member}}Data({{upperMember}} {{Member}}Dtd);
+    Integer delete{{Member}}Data(Long {{id}});
+    }
+

@@ -5,8 +5,8 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-//@AllArgsConstructor
-//@NoArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class MemberVO {
 
     private Long id;
