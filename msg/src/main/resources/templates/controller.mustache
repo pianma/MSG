@@ -1,0 +1,40 @@
+package {{basicPath}}.controller;
+
+import {{basicPath}}.dto.{{upperKeyword}}Dto;
+import {{basicPath}}.service.{{upperKeyword}}Service;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.*;
+
+@RestController
+@RequiredArgsConstructor
+public class {{upperKeyword}}Controller {
+
+    private final {{upperKeyword}}Service {{keyword}}Service;
+
+    @GetMapping("/{{keyword}}-all")
+    public List<{{upperKeyword}}Dto> get{{upperKeyword}}List(){
+        return {{keyword}}Service.get{{upperKeyword}}List();
+    }
+
+    @GetMapping("/{{keyword}}/{{primaryFieldDtoNameWithBraces}}")
+    public {{upperKeyword}}Dto get{{upperKeyword}}Data(@PathVariable {{primaryFieldDto.type}} {{primaryFieldDto.name}}){
+        return {{keyword}}Service.get{{upperKeyword}}Data({{primaryFieldDto.name}});
+    }
+
+    @PostMapping("/{{keyword}}")
+    public int add{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto){
+        return {{keyword}}Service.add{{upperKeyword}}Data({{keyword}}Dto);
+    }
+
+    @PutMapping("/{{keyword}}")
+    public int modify{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto){
+        return {{keyword}}Service.modify{{upperKeyword}}Data({{keyword}}Dto);
+    }
+
+    @DeleteMapping("/{{keyword}}/{{primaryFieldDtoNameWithBraces}}")
+    public int delete{{upperKeyword}}Data(@PathVariable {{primaryFieldDto.type}} {{primaryFieldDto.name}}){
+        return {{keyword}}Service.delete{{upperKeyword}}Data({{primaryFieldDto.name}});
+    }
+}

@@ -1,12 +1,10 @@
 package com.project.msg.controller;
 
 import com.project.msg.dto.MemberVO;
-import com.project.msg.mapper.IndexMapper;
 import com.project.msg.service.IndexService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -17,8 +15,7 @@ public class IndexController {
 
     @GetMapping("/member/all")
     public List<MemberVO> getMemberList(){
-        List<MemberVO> list = indexService.getMemberList();
-        return list;
+        return indexService.getMemberList();
     }
 
     @GetMapping("/member/{id}")

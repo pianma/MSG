@@ -2,8 +2,10 @@ package com.project.msg.dto;
 
 import lombok.*;
 
+import java.util.Objects;
+
+//@Setter
 @Getter
-@Setter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
