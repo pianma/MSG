@@ -2,48 +2,48 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.msg.mapper.IndexMapper">
 
-    <resultMap id="memberResult" type="MemberVO">
-        <result column="id" property="id" />
-        <result column="name" property="name" />
-    </resultMap>
+<!--    <resultMap id="memberResult" type="UserDto">-->
+<!--        <result column="id" property="id" />-->
+<!--        <result column="name" property="name" />-->
+<!--    </resultMap>-->
 
 <!--    <select id="getAllList" resultMap="memberResult">-->
 <!--        <![CDATA[-->
 <!--            SELECT * FROM MEMBER-->
 <!--        ]]>-->
 <!--    </select>-->
-    <select id="selectMemberList" resultType="MemberVO">
+    <select id="selectMemberList" resultType="UserDto">
         <![CDATA[
-            SELECT * FROM MEMBER
+            SELECT * FROM com_user
         ]]>
     </select>
 
-    <select id="selectMemberData" resultType="MemberVO" parameterType="java.lang.Long">
+    <select id="selectMemberData" resultType="UserDto" parameterType="java.lang.Integer">
         <![CDATA[
-            SELECT * FROM MEMBER WHERE id = #{id}
+            SELECT * FROM com_user WHERE USERNO = #{userNo}
         ]]>
     </select>
 
-    <insert id="insertMemberData" parameterType="MemberVO">
+    <insert id="insertMemberData" parameterType="UserDto">
         <![CDATA[
-            INSERT INTO MEMBER VALUES (null, #{name})
+            INSERT INTO com_user VALUES (null, #{userId},#{userNm},#{userPw},#{userRole},#{photo},#{deptNo},#{deleteFlag})
         ]]>
     </insert>
 
-    <update id="updateMemberData" parameterType="MemberVO">
+    <update id="updateMemberData" parameterType="UserDto">
         <![CDATA[
-            UPDATE MEMBER
-            SET name= #{name}
+            UPDATE com_user
+            SET USERNM = #{userNm}
             WHERE
-            id=#{id}
+            USERNO = #{userNo}
         ]]>
     </update>
 
-    <delete id="deleteMemberData" parameterType="java.lang.Long">
+    <delete id="deleteMemberData" parameterType="java.lang.Integer">
         <![CDATA[
-            DELETE FROM MEMBER
+            DELETE FROM com_user
             WHERE
-            id=#{id}
+            USERNO = #{userNo}
         ]]>
     </delete>
 
