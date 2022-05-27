@@ -3,11 +3,10 @@ package com.project.msg.dto;
 import lombok.*;
 
 
-@ToString
-@Getter
-@RequiredArgsConstructor
+
 //@NoArgsConstructor
 @Builder
+@Data
 public class FieldDto {
 
     private final String type;
