@@ -1,6 +1,7 @@
 package com.project.msg.controller;
 
-import com.project.msg.dto.MemberVO;
+
+import com.project.msg.dto.UserDto;
 import com.project.msg.service.IndexService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -14,27 +15,28 @@ public class IndexController {
     private final IndexService indexService;
 
     @GetMapping("/member/all")
-    public List<MemberVO> getMemberList(){
+    public List<UserDto> getMemberList(){
         return indexService.getMemberList();
     }
 
-    @GetMapping("/member/{id}")
-    public MemberVO getMemberData(@PathVariable Long id){
-        return indexService.getMemberData(id);
+    @GetMapping("/member/{userNo}")
+    public UserDto getMemberData(@PathVariable Integer userNo){
+        return indexService.getMemberData(userNo);
     }
 
     @PostMapping("/member")
-    public int addMemberData(MemberVO memberVO){
-        return indexService.addMemberData(memberVO);
+    public int addMemberData(UserDto userDto){
+        System.out.println("userDto = " + userDto);
+        return indexService.addMemberData(userDto);
     }
 
     @PutMapping("/member")
-    public int modifyMemberData(MemberVO memberVO){
-        return indexService.modifyMemberData(memberVO);
+    public int modifyMemberData(UserDto userDto){
+        return indexService.modifyMemberData(userDto);
     }
 
-    @DeleteMapping("/member/{id}")
-    public int deleteMemberData(@PathVariable Long id){
-        return indexService.deleteMemberData(id);
+    @DeleteMapping("/member/{userNo}")
+    public int deleteMemberData(@PathVariable Integer userNo){
+        return indexService.deleteMemberData(userNo);
     }
 }

@@ -1,15 +1,36 @@
 package com.project.msg.service;
 
-import com.project.msg.dto.MemberVO;
+import com.project.msg.dto.UserDto;
+import com.project.msg.mapper.IndexMapper;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public interface IndexService {
+@RequiredArgsConstructor
+@Service
+public class IndexService  {
 
-    List<MemberVO> getMemberList();
-    MemberVO getMemberData(Long id);
-    Integer addMemberData(MemberVO memberVO);
-    Integer modifyMemberData(MemberVO memberVO);
-    Integer deleteMemberData(Long id);
+    private final IndexMapper indexMapper;
+
+    public List<UserDto> getMemberList() {
+        return indexMapper.selectMemberList();
+    }
+
+    public UserDto getMemberData(Integer userNo) {
+        return indexMapper.selectMemberData(userNo);
+    }
+
+    public Integer addMemberData(UserDto userDto) {
+        return indexMapper.insertMemberData(userDto);
+    }
+
+    public Integer modifyMemberData(UserDto userDto) {
+        return indexMapper.updateMemberData(userDto);
+    }
+
+    public Integer deleteMemberData(Integer userNo) {
+        return indexMapper.deleteMemberData(userNo);
+    }
 
 }
