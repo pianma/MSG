@@ -5,10 +5,10 @@ import lombok.*;
 import java.util.Objects;
 
 //@Setter
-@Getter
-@ToString
+
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class MemberVO {
 
     private Long id;
