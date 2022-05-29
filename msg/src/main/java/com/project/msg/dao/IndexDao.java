@@ -18,7 +18,6 @@ public class IndexDao {
 
     @Autowired
     public IndexDao(SqlSession sqlSession) {
-        log.info("IndexDao.IndexDao");
         log.info("sqlSession = " + sqlSession);
         this.sqlSession = sqlSession;
     }
@@ -28,8 +27,8 @@ public class IndexDao {
     }
 
     public UserDto selectMemberData(Integer userNo) {
-
-        return sqlSession.selectOne("mapper.member.selectMemberData", userNo);
+        UserDto userDto = sqlSession.selectOne("mapper.member.selectMemberData", userNo);
+        return userDto;
     }
 
     public Integer insertMemberData(UserDto userDto) {

@@ -26,7 +26,6 @@ public class IndexController {
 
     @PostMapping("/member")
     public int addMemberData(UserDto userDto){
-        System.out.println("userDto = " + userDto);
         return indexService.addMemberData(userDto);
     }
 

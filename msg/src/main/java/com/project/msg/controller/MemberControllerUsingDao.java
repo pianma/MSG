@@ -27,7 +27,6 @@ public class MemberControllerUsingDao {
 
     @PostMapping("/member")
     public int addMemberData(UserDto userDto){
-        System.out.println("userDto = " + userDto);
         return memberSerivceUsingDao.addMemberData(userDto);
     }
 

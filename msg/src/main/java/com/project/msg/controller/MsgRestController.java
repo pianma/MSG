@@ -56,10 +56,12 @@ public class MsgRestController {
         if (!javaFile.exists()) {
 
             javaFile.mkdirs();
-            System.out.println("생성 경로= "+ javaFile.getPath());
+            log.info("생성 경로= "+ javaFile.getPath());
+
 
         }else {
-            System.out.println("이미 경로 존재");
+
+            log.info("이미 경로 존재");
         }
 
         //리소스 경로
@@ -87,7 +89,7 @@ public class MsgRestController {
                                 .replace("{{primaryFieldDto.name}}","id")
                                 .replace("{{primaryFieldDtoNameWithBraces}}","{id}");
 
-                System.out.println(i+":"+temp);
+                log.info(i+":"+temp);
                 stringBuilder.append(temp).append(System.getProperty("line.separator"));
 
 
@@ -100,7 +102,7 @@ public class MsgRestController {
 
             }
 
-            System.out.println("stringBuilder = " + stringBuilder);
+            log.info("stringBuilder = " + stringBuilder);
 
             bufferedWriter.write(stringBuilder.toString());
             bufferedWriter.flush();
