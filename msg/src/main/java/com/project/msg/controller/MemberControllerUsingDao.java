@@ -1,41 +1,43 @@
 package com.project.msg.controller;
 
-
 import com.project.msg.dto.UserDto;
 import com.project.msg.service.IndexService;
+import com.project.msg.service.MemberSerivceUsingDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@RequestMapping("/dao")
+@RestController()
 @RequiredArgsConstructor
-public class IndexController {
+public class MemberControllerUsingDao {
 
-    private final IndexService indexService;
+    private final MemberSerivceUsingDao memberSerivceUsingDao;
 
     @GetMapping("/member/all")
     public List<UserDto> getMemberList(){
-        return indexService.getMemberList();
+        return memberSerivceUsingDao.getMemberList();
     }
 
     @GetMapping("/member/{userNo}")
     public UserDto getMemberData(@PathVariable Integer userNo){
-        return indexService.getMemberData(userNo);
+        return memberSerivceUsingDao.getMemberData(userNo);
     }
 
     @PostMapping("/member")
     public int addMemberData(UserDto userDto){
-        return indexService.addMemberData(userDto);
+        return memberSerivceUsingDao.addMemberData(userDto);
     }
 
     @PutMapping("/member")
     public int modifyMemberData(UserDto userDto){
-        return indexService.modifyMemberData(userDto);
+        return memberSerivceUsingDao.modifyMemberData(userDto);
     }
 
     @DeleteMapping("/member/{userNo}")
     public int deleteMemberData(@PathVariable Integer userNo){
-        return indexService.deleteMemberData(userNo);
+        return memberSerivceUsingDao.deleteMemberData(userNo);
     }
+
 }

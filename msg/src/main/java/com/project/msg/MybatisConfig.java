@@ -35,7 +35,7 @@ public class MybatisConfig {
     @Bean
     public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) throws Exception {
         SqlSessionTemplate sqlSessionTemplate = new SqlSessionTemplate(sqlSessionFactory);
-        sqlSessionTemplate.getConfiguration().setMapUnderscoreToCamelCase(true);
+//        sqlSessionTemplate.getConfiguration().setMapUnderscoreToCamelCase(true);
 
         return sqlSessionTemplate;
     }
