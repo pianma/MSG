@@ -9,7 +9,7 @@ public class TableDto {
 
     private String field;
     private String type;
-    private boolean isNull;
+    private String isNullable;
     private String key;
     private String extra;
 }

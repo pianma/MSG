@@ -5,7 +5,15 @@
 
     <select id="selectTableData" resultType="TableDto" parameterType="java.lang.String">
         <![CDATA[
-            DESCRIBE ${tableName}
+            SELECT
+            TABLE_NAME AS 'tableName',
+            COLUMN_NAME AS 'field',
+            is_nullable AS 'isNullable',
+            data_type AS 'type',
+            column_key AS 'key',
+            extra
+            FROM information_schema.columns
+            WHERE table_schema = 'project9' AND TABLE_NAME = #{tableName};
         ]]>
     </select>
 
