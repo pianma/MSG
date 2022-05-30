@@ -23,4 +23,6 @@ public class TableDao {
         return sqlSession.selectList("mapper.table.selectTableData", tableName);
 
     }
+
+
 }
