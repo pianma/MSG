@@ -1,6 +1,4 @@
 package com.project.msg.service;
-
-import com.project.msg.dao.IndexDao;
 import com.project.msg.dto.UserDto;
 import com.project.msg.mapper.IndexMapper;
 import lombok.RequiredArgsConstructor;

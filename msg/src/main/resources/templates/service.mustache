@@ -1,38 +1,22 @@
-import {{basicPath}}.service;
+package {{basicPath}}.service;
+
+ import {{basicPath}}.dao.IndexDao;
+ import {{basicPath}}.dto.{{upperKeyword}}Dto;
+ import lombok.RequiredArgsConstructor;
+ import lombok.extern.slf4j.Slf4j;
+ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public interface {{upperKeyword}}Service {
+@Slf4j
+@RequiredArgsConstructor
+@Service
+public class {{upperKeyword}}SerivceUsingDao {
 
-List<{{upperKeyword}}Dto> get{{upperKeyword}}List();
-    {{upperKeyword}}Dto get{{upperKeyword}}Data({{primaryFieldDto.type}} {{primaryFieldDto.name}});
-    Integer add{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto);
-    Integer modify{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto);
-    Integer delete{{upperKeyword}}Data(Long {{primaryFieldDto.name}});
+            private final {{upperKeyword}}Dao {{keyword}}Dao;
 
-    }
-
-
-
-    package {{basicPath}}.service;
-
-    import {{basicPath}}.dao.IndexDao;
-    import {{basicPath}}.dto.{{upperKeyword}}Dto;
-    import lombok.RequiredArgsConstructor;
-    import lombok.extern.slf4j.Slf4j;
-    import org.springframework.stereotype.Service;
-
-    import java.util.List;
-
-    @Slf4j
-    @RequiredArgsConstructor
-    @Service
-    public class {{upperKeyword}}SerivceUsingDao {
-
-    private final IndexDao indexDao;
-
-    public List<{{upperKeyword}}Dto> get{{upperKeyword}}List() {
-        List<UserDto> {{upperKeyword}}List = indexDao.select{{upperKeyword}}List();
+            public List<{{upperKeyword}}Dto> get{{upperKeyword}}List() {
+            List<UserDto> {{upperKeyword}}List = indexDao.select{{upperKeyword}}List();
             log.info({{upperKeyword}}List.toString());
             return {{upperKeyword}}List;
             }
