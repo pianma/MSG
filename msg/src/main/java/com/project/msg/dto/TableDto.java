@@ -15,4 +15,6 @@ public class TableDto {
     private String isNullable;
     private String key;
     private String extra;
+
+
 }

@@ -34,11 +34,11 @@ public class TableDao {
 
         //자바 타입
         tableDtoList.stream().forEach(column -> { column.setJavaType(column.getType()
-                                                        .replace("int","Integer")
-                                                        .replace("long","Long")
-                                                        .replace("varchar","String")
-                                                        .replace("char","String")
-                                                        .replace("datetime","java.sql.Timestamp"));
+                                                                        .replace("int","Integer")
+                                                                        .replace("long","Long")
+                                                                        .replace("varchar","String")
+                                                                        .replace("char","String")
+                                                                        .replace("datetime","java.sql.Timestamp"));
         });
 
 

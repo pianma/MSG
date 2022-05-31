@@ -3,13 +3,17 @@ package com.project.msg.service;
 import com.project.msg.dao.TableDao;
 import com.project.msg.dto.FileInfoDto;
 import com.project.msg.dto.TableDto;
+import com.project.msg.util.PrimaryField;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.*;
 import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -20,16 +24,6 @@ import java.util.stream.Collectors;
 public class GenerateControllerSource {
 
     private final TableDao tableDao;
-//    private final
-
-    //컨트롤러 소스파일을 생성하는 서비스 모듈
-
-    /**
-     * 키워드
-     * 테이블명
-     * 패키지 경로
-     * 생성해야 될 소스파일 종류
-     */
 
     public String generate(FileInfoDto fileInfoDto) {
 
@@ -37,17 +31,11 @@ public class GenerateControllerSource {
 
         //1. 테이블 정보 얻기
         List<TableDto> tableDataList = tableDao.selectTableData(fileInfoDto.getTableName());
-
-        //유니크 키 타입, 변수명
         log.info(tableDataList.toString());
 
+        //유니크 키 타입, 변수명
         List<TableDto> primaryFieldList = tableDataList.stream().filter(column -> column.getKey().equals("PRI")).collect(Collectors.toList());
         log.info("primaryField.toString()="+primaryFieldList.toString());
-
-
-        //추후 추가로 기본키가 2개인 테이블을 고려해서 수정해야함. TODO
-        TableDto uniqueFieldDto = primaryFieldList.get(0);
-
 
         //2. 키워드 변환(소문자, 첫글자만 대문자), 패키지 경로 변환
 
@@ -57,8 +45,6 @@ public class GenerateControllerSource {
 
         String path = fileInfoDto.getPath().trim().toLowerCase().replace("-",".");
         String filePathWithSeparator = path.replace(".", File.separator);
-
-
 
         //3. 컨트롤러 소스파일 생성
 
@@ -110,11 +96,10 @@ public class GenerateControllerSource {
                         .replace("{{basicPath}}", path)
                         .replace("{{upperKeyword}}", firstLetterUpperKeyword)
                         .replace("{{keyword}}", keyword)
-                        .replace("{{primaryFieldDto.type}}", uniqueFieldDto.getType())
-                        .replace("{{primaryFieldDto.name}}", uniqueFieldDto.getField().toLowerCase())
-                        .replace("{{primaryFieldDtoNameWithBraces}}", "{"+uniqueFieldDto.getField().toLowerCase()+"}");
+                        .replace("{{primaryFieldParameter}}", PrimaryField.getPrimaryFieldParameter(primaryFieldList))
+                        .replace("{{primaryFieldVariable}}", PrimaryField.getPrimaryFieldVariable(primaryFieldList))
+                        .replace("{{primaryFieldVariableWithBraces}}", PrimaryField.getPrimaryFieldVariableWithBraces(primaryFieldList));
 
-//                log.info(i + ":" + temp);
                 stringBuilder.append(temp).append(System.getProperty("line.separator"));
 
             }
