@@ -96,7 +96,7 @@ public class GenerateControllerSource {
                         .replace("{{basicPath}}", path)
                         .replace("{{upperKeyword}}", firstLetterUpperKeyword)
                         .replace("{{keyword}}", keyword)
-                        .replace("{{primaryFieldParameter}}", PrimaryField.getPrimaryFieldParameter(primaryFieldList))
+                        .replace("{{primaryFieldParameterWithPathVariable}}", PrimaryField.getPrimaryFieldParameterWithPathVariable(primaryFieldList))
                         .replace("{{primaryFieldVariable}}", PrimaryField.getPrimaryFieldVariable(primaryFieldList))
                         .replace("{{primaryFieldVariableWithBraces}}", PrimaryField.getPrimaryFieldVariableWithBraces(primaryFieldList));
 

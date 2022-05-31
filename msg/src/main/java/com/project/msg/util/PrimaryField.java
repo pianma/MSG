@@ -9,12 +9,29 @@ import java.util.List;
 public class PrimaryField {
 
 
-    public static String getPrimaryFieldParameter(List<TableDto> primaryFieldList) { //@PathVariable Integer userno, ...
+    public static String getPrimaryFieldParameterWithPathVariable(List<TableDto> primaryFieldList) { //@PathVariable Integer userno, ...
 
         StringBuffer result = new StringBuffer();
 
         for (int i = 0; i < primaryFieldList.size(); i++) {
             result.append("@PathVariable "+primaryFieldList.get(i).getJavaType()+" "+primaryFieldList.get(i).getField().toLowerCase());
+
+            if(i != primaryFieldList.size()-1){
+                result.append(", ");
+            }
+        }
+
+        log.info("getPrimaryFieldParameter: "+result);
+
+        return result.toString();
+    }
+
+    public static String getPrimaryFieldParameter(List<TableDto> primaryFieldList) { //@PathVariable Integer userno, ...
+
+        StringBuffer result = new StringBuffer();
+
+        for (int i = 0; i < primaryFieldList.size(); i++) {
+            result.append(primaryFieldList.get(i).getJavaType()+" "+primaryFieldList.get(i).getField().toLowerCase());
 
             if(i != primaryFieldList.size()-1){
                 result.append(", ");
