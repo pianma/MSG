@@ -11,31 +11,31 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class {{upperKeyword}}SerivceUsingDao {
+public class {{upperKeyword}}Service{
 
-            private final {{upperKeyword}}Dao {{keyword}}Dao;
+    private final {{upperKeyword}}Dao {{keyword}}Dao;
 
-            public List<{{upperKeyword}}Dto> get{{upperKeyword}}List() {
-            List<UserDto> {{upperKeyword}}List = indexDao.select{{upperKeyword}}List();
-            log.info({{upperKeyword}}List.toString());
-            return {{upperKeyword}}List;
-            }
+    public List<{{upperKeyword}}Dto> get{{upperKeyword}}List() {
+        List<{{upperKeyword}}Dto> {{keyword}}List = {{keyword}}Dao.select{{upperKeyword}}List();
+        log.info({{upperKeyword}}List.toString());
+        return {{keyword}}List;
+    }
 
-            public {{upperKeyword}}Dto get{{upperKeyword}}Data(Integer {{keyword}}No) {
-            return indexDao.select{{upperKeyword}}Data({{keyword}}No);
-            }
+    public {{upperKeyword}}Dto get{{upperKeyword}}Data({{primaryFieldParameter}}) {
+        return {{keyword}}Dao.select{{upperKeyword}}Data({{primaryFieldVariable}});
+    }
 
-            public Integer add{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto) {
-            return indexDao.insert{{upperKeyword}}Data({{keyword}}Dto);
-            }
+    public Integer add{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto) {
+        return {{keyword}}Dao.insert{{upperKeyword}}Data({{keyword}}Dto);
+    }
 
-            public Integer modify{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto) {
-            return indexDao.update{{upperKeyword}}Data({{keyword}}Dto);
-            }
+    public Integer modify{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto) {
+        return {{keyword}}Dao.update{{upperKeyword}}Data({{keyword}}Dto);
+    }
 
-            public Integer delete{{upperKeyword}}Data(Integer {{keyword}}No) {
-            return indexDao.delete{{upperKeyword}}Data({{keyword}}No);
-            }
+    public Integer delete{{upperKeyword}}Data({{primaryFieldParameter}}) {
+        return {{keyword}}Dao.delete{{upperKeyword}}Data({{primaryFieldVariable}});
+    }
 
             }
 

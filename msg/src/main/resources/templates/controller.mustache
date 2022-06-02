@@ -19,7 +19,7 @@ public class {{upperKeyword}}Controller {
     }
 
     @GetMapping("/{{keyword}}/{{primaryFieldVariableWithBraces}}")
-    public {{upperKeyword}}Dto get{{upperKeyword}}Data({{primaryFieldParameter}}){
+    public {{upperKeyword}}Dto get{{upperKeyword}}Data({{primaryFieldParameterWithPathVariable}}){
         return {{keyword}}Service.get{{upperKeyword}}Data({{primaryFieldVariable}});
     }
 
@@ -34,7 +34,7 @@ public class {{upperKeyword}}Controller {
     }
 
     @DeleteMapping("/{{keyword}}/{{primaryFieldVariableWithBraces}}")
-    public int delete{{upperKeyword}}Data({{primaryFieldParameter}}){
+    public int delete{{upperKeyword}}Data({{primaryFieldParameterWithPathVariable}}){
         return {{keyword}}Service.delete{{upperKeyword}}Data({{primaryFieldVariable}});
     }
 }

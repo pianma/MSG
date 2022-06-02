@@ -4,6 +4,7 @@ import com.project.msg.dao.TableDao;
 import com.project.msg.dto.FileInfoDto;
 import com.project.msg.dto.TableDto;
 import com.project.msg.util.FieldUtil;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -12,12 +13,15 @@ import java.io.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Data
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class GenerateControllerSource {
+public class GenerateDtoSource {
 
-    private final TableDao tableDao;
+
+    private  final TableDao tableDao;
+
 
     public String generate(FileInfoDto fileInfoDto) {
 
@@ -48,13 +52,13 @@ public class GenerateControllerSource {
 //                + "com" + File.separator          //패키지 경로 ~
 //                + "project" + File.separator
 //                + "target" + File.separator
-//                + "controller" + File.separator; //역할 경로
+//                + "service" + File.separator; //역할 경로
 
         String filePath = "src" + File.separator
-                        + "main" + File.separator
-                        + "java" + File.separator
-                        + filePathWithSeparator + File.separator
-                        + "controller" + File.separator; //'컨트롤러'
+                + "main" + File.separator
+                + "java" + File.separator
+                + filePathWithSeparator + File.separator
+                + "service" + File.separator; //'컨트롤러'
 
 
         File javaFile = new File(filePath);
@@ -73,14 +77,14 @@ public class GenerateControllerSource {
                 + "main" + File.separator
                 + "resources" + File.separator
                 + "templates" + File.separator
-                + "controller.mustache";
+                + "service.mustache";
 
         String line = "";
         StringBuilder stringBuilder = new StringBuilder();
 
         try (
                 BufferedReader bufferedReader = new BufferedReader(new FileReader(resourcePath));
-                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath + firstLetterUpperKeyword +"Controller.java"));
+                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath + firstLetterUpperKeyword +"Service.java"));
         ) {
 
 
@@ -90,15 +94,9 @@ public class GenerateControllerSource {
                         .replace("{{basicPath}}", path)
                         .replace("{{upperKeyword}}", firstLetterUpperKeyword)
                         .replace("{{keyword}}", keyword)
-<<<<<<< HEAD
-                        .replace("{{primaryFieldParameter}}", FieldUtil.getPrimaryFieldParameter(primaryFieldList))
+                        .replace("{{primaryFieldParameterDto}}", FieldUtil.getPrimaryFieldParameterDto(primaryFieldList))
                         .replace("{{primaryFieldVariable}}", FieldUtil.getPrimaryFieldVariable(primaryFieldList))
                         .replace("{{primaryFieldVariableWithBraces}}", FieldUtil.getPrimaryFieldVariableWithBraces(primaryFieldList));
-=======
-                        .replace("{{primaryFieldParameterWithPathVariable}}", PrimaryField.getPrimaryFieldParameterWithPathVariable(primaryFieldList))
-                        .replace("{{primaryFieldVariable}}", PrimaryField.getPrimaryFieldVariable(primaryFieldList))
-                        .replace("{{primaryFieldVariableWithBraces}}", PrimaryField.getPrimaryFieldVariableWithBraces(primaryFieldList));
->>>>>>> main
 
                 stringBuilder.append(temp).append(System.getProperty("line.separator"));
 
@@ -120,4 +118,3 @@ public class GenerateControllerSource {
         return stringBuilder.toString();
     }
 }
-
