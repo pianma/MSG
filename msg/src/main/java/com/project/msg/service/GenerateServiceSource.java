@@ -3,11 +3,10 @@ package com.project.msg.service;
 import com.project.msg.dao.TableDao;
 import com.project.msg.dto.FileInfoDto;
 import com.project.msg.dto.TableDto;
-import com.project.msg.util.PrimaryField;
+import com.project.msg.util.FieldUtil;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -94,9 +93,9 @@ public class GenerateServiceSource {
                         .replace("{{basicPath}}", path)
                         .replace("{{upperKeyword}}", firstLetterUpperKeyword)
                         .replace("{{keyword}}", keyword)
-                        .replace("{{primaryFieldParameter}}", PrimaryField.getPrimaryFieldParameter(primaryFieldList))
-                        .replace("{{primaryFieldVariable}}", PrimaryField.getPrimaryFieldVariable(primaryFieldList))
-                        .replace("{{primaryFieldVariableWithBraces}}", PrimaryField.getPrimaryFieldVariableWithBraces(primaryFieldList));
+                        .replace("{{primaryFieldParameter}}", FieldUtil.getPrimaryFieldParameter(primaryFieldList))
+                        .replace("{{primaryFieldVariable}}", FieldUtil.getPrimaryFieldVariable(primaryFieldList))
+                        .replace("{{primaryFieldVariableWithBraces}}", FieldUtil.getPrimaryFieldVariableWithBraces(primaryFieldList));
 
                 stringBuilder.append(temp).append(System.getProperty("line.separator"));
 

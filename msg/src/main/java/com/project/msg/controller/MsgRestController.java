@@ -2,7 +2,11 @@ package com.project.msg.controller;
 
 import com.project.msg.dto.FileInfoDto;
 import com.project.msg.service.GenerateControllerSource;
+<<<<<<< HEAD
+import com.project.msg.service.GenerateXmlSource;
+=======
 import com.project.msg.service.GenerateServiceSource;
+>>>>>>> main
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -20,6 +24,8 @@ public class MsgRestController {
 
     private final GenerateControllerSource generateControllerSource;
     private final GenerateServiceSource generateServiceSource;
+    private final GenerateXmlSource generateXmlSource;
+
 
     //generateAll() 함수도 추후 추가
 
@@ -37,12 +43,14 @@ public class MsgRestController {
 
         String controller = generateControllerSource.generate(fileInfoDto);
         String service = generateServiceSource.generate(fileInfoDto);
+        String xml = generateXmlSource.generate(fileInfoDto);
 
 
         fileList.add(controller);
+        fileList.add(xml);
+        fileList.add(service);
 
         log.info(fileList.toString());
-
 
         return new ResponseEntity<List<String>>(fileList, HttpStatus.OK);
     }

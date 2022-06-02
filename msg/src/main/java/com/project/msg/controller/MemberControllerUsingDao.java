@@ -2,7 +2,6 @@ package com.project.msg.controller;
 
 import com.project.msg.dto.TableDto;
 import com.project.msg.dto.UserDto;
-import com.project.msg.service.IndexService;
 import com.project.msg.service.MemberSerivceUsingDao;
 import com.project.msg.service.TableService;
 import lombok.RequiredArgsConstructor;

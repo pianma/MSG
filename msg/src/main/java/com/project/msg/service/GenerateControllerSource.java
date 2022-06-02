@@ -3,19 +3,13 @@ package com.project.msg.service;
 import com.project.msg.dao.TableDao;
 import com.project.msg.dto.FileInfoDto;
 import com.project.msg.dto.TableDto;
-import com.project.msg.util.PrimaryField;
+import com.project.msg.util.FieldUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.io.*;
-import java.sql.ResultSetMetaData;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -57,10 +51,10 @@ public class GenerateControllerSource {
 //                + "controller" + File.separator; //역할 경로
 
         String filePath = "src" + File.separator
-                + "main" + File.separator
-                + "java" + File.separator
-                + filePathWithSeparator + File.separator
-                + "controller" + File.separator; //'컨트롤러'
+                        + "main" + File.separator
+                        + "java" + File.separator
+                        + filePathWithSeparator + File.separator
+                        + "controller" + File.separator; //'컨트롤러'
 
 
         File javaFile = new File(filePath);
@@ -96,9 +90,15 @@ public class GenerateControllerSource {
                         .replace("{{basicPath}}", path)
                         .replace("{{upperKeyword}}", firstLetterUpperKeyword)
                         .replace("{{keyword}}", keyword)
+<<<<<<< HEAD
+                        .replace("{{primaryFieldParameter}}", FieldUtil.getPrimaryFieldParameter(primaryFieldList))
+                        .replace("{{primaryFieldVariable}}", FieldUtil.getPrimaryFieldVariable(primaryFieldList))
+                        .replace("{{primaryFieldVariableWithBraces}}", FieldUtil.getPrimaryFieldVariableWithBraces(primaryFieldList));
+=======
                         .replace("{{primaryFieldParameterWithPathVariable}}", PrimaryField.getPrimaryFieldParameterWithPathVariable(primaryFieldList))
                         .replace("{{primaryFieldVariable}}", PrimaryField.getPrimaryFieldVariable(primaryFieldList))
                         .replace("{{primaryFieldVariableWithBraces}}", PrimaryField.getPrimaryFieldVariableWithBraces(primaryFieldList));
+>>>>>>> main
 
                 stringBuilder.append(temp).append(System.getProperty("line.separator"));
 

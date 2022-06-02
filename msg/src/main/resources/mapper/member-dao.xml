@@ -18,7 +18,7 @@
         ]]>
     </select>
 
-    <select id="selectMemberData" resultType="UserDto" parameterType="java.lang.Integer">
+    <select id="selectMemberData" resultType="UserDto" parameterType="UserDto">
         <![CDATA[
             SELECT * FROM com_user WHERE USERNO = #{userNo}
         ]]>
@@ -39,7 +39,7 @@
         ]]>
     </update>
 
-    <delete id="deleteMemberData" parameterType="java.lang.Integer">
+    <delete id="deleteMemberData" parameterType="UserDto">
         <![CDATA[
             DELETE FROM com_user
             WHERE
