@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.{{keyword}}">
+
+    <select id="select{{upperKeyword}}List" resultType="{{upperKeyword}}Dto">
+        <![CDATA[
+        SELECT * FROM {{tableName}}
+        ]]>
+    </select>
+
+    <select id="select{{upperKeyword}}Data" resultType="{{upperKeyword}}Dto" parameterType="{{upperKeyword}}Dto">
+        <![CDATA[
+        SELECT * FROM {{tableName}}
+        WHERE
+        {{whereConditionOfPrimary}}
+        ]]>
+    </select>
+
+    <insert id="insert{{upperKeyword}}Data" parameterType="{{upperKeyword}}Dto">
+        <![CDATA[
+        INSERT INTO {{tableName}}
+        VALUES ( {{targetFieldOfInsert}} )
+        ]]>
+    </insert>
+
+    <update id="update{{upperKeyword}}Data" parameterType="{{upperKeyword}}Dto">
+        <![CDATA[
+        UPDATE {{tableName}}
+        SET {{targetFieldOfUpdate}}
+        WHERE
+        {{whereConditionOfPrimary}}
+        ]]>
+    </update>
+
+    <delete id="delete{{upperKeyword}}Data" parameterType="{{upperKeyword}}Dto">
+        <![CDATA[
+        DELETE FROM {{tableName}}
+        WHERE
+        {{whereConditionOfPrimary}}
+        ]]>
+    </delete>
+
+</mapper>

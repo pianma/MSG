@@ -2,6 +2,7 @@ package com.project.msg.controller;
 
 import com.project.msg.dto.FileInfoDto;
 import com.project.msg.service.GenerateControllerSource;
+import com.project.msg.service.GenerateXmlSource;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import java.util.List;
 public class MsgRestController {
 
     private final GenerateControllerSource generateControllerSource;
+    private final GenerateXmlSource generateXmlSource;
 
 
     //generateAll() 함수도 추후 추가
@@ -35,11 +37,12 @@ public class MsgRestController {
 
 
         String controller = generateControllerSource.generate(fileInfoDto);
+        String xml = generateXmlSource.generate(fileInfoDto);
 
         fileList.add(controller);
+        fileList.add(xml);
 
         log.info(fileList.toString());
-
 
         return new ResponseEntity<List<String>>(fileList, HttpStatus.OK);
     }
