@@ -90,15 +90,10 @@ public class GenerateControllerSource {
                         .replace("{{basicPath}}", path)
                         .replace("{{upperKeyword}}", firstLetterUpperKeyword)
                         .replace("{{keyword}}", keyword)
-<<<<<<< HEAD
                         .replace("{{primaryFieldParameter}}", FieldUtil.getPrimaryFieldParameter(primaryFieldList))
                         .replace("{{primaryFieldVariable}}", FieldUtil.getPrimaryFieldVariable(primaryFieldList))
                         .replace("{{primaryFieldVariableWithBraces}}", FieldUtil.getPrimaryFieldVariableWithBraces(primaryFieldList));
-=======
-                        .replace("{{primaryFieldParameterWithPathVariable}}", PrimaryField.getPrimaryFieldParameterWithPathVariable(primaryFieldList))
-                        .replace("{{primaryFieldVariable}}", PrimaryField.getPrimaryFieldVariable(primaryFieldList))
-                        .replace("{{primaryFieldVariableWithBraces}}", PrimaryField.getPrimaryFieldVariableWithBraces(primaryFieldList));
->>>>>>> main
+
 
                 stringBuilder.append(temp).append(System.getProperty("line.separator"));
 

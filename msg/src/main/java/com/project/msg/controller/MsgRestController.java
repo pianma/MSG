@@ -2,11 +2,8 @@ package com.project.msg.controller;
 
 import com.project.msg.dto.FileInfoDto;
 import com.project.msg.service.GenerateControllerSource;
-<<<<<<< HEAD
-import com.project.msg.service.GenerateXmlSource;
-=======
 import com.project.msg.service.GenerateServiceSource;
->>>>>>> main
+import com.project.msg.service.GenerateXmlSource;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
