@@ -1,0 +1,37 @@
+package {{basicPath}}.dao;
+
+import {{basicPath}}.dto.{{upperKeyword}}Dto;
+import lombok.extern.slf4j.Slf4j;
+import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Slf4j
+@Repository
+@RequiredArgsConstructor
+public class {{upperKeyword}}Dao {
+
+    private final SqlSession sqlSession;
+
+    public List<{{upperKeyword}}Dto> select{{upperKeyword}}List() {
+        return sqlSession.selectList("mapper.{{keyword}}.select{{upperKeyword}}List");
+    }
+
+    public {{upperKeyword}}Dto select{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto) {
+        return sqlSession.selectOne("mapper.{{keyword}}.select{{upperKeyword}}Data", {{keyword}}Dto);
+    }
+
+    public Integer insert{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto) {
+        return sqlSession.insert("mapper.{{keyword}}.insert{{upperKeyword}}Data", {{keyword}}Dto);
+    }
+
+    public Integer update{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto) {
+        return sqlSession.update("mapper.{{keyword}}.update{{upperKeyword}}Data", {{keyword}}Dto);
+    }
+
+    public Integer delete{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto) {
+        return sqlSession.delete("mapper.{{keyword}}.delete{{upperKeyword}}Data", {{keyword}}Dto);
+    }
+}

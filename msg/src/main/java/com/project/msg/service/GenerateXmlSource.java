@@ -18,14 +18,16 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class GenerateXmlSource {
 
-    //xxx.xml 소스파일 생성 서비스
-
     private final TableDao tableDao;
 
     public String generate(FileInfoDto fileInfoDto) {
 
         //1. 테이블 정보 얻기
-        List<TableDto> tableDataList = tableDao.selectTableData(fileInfoDto.getTableName());
+        TableDto tableDto = new TableDto();
+        tableDto.setSchema(fileInfoDto.getSchema());
+        tableDto.setTableName(fileInfoDto.getTableName());
+
+        List<TableDto> tableDataList = tableDao.selectTableData(tableDto);
         log.info(tableDataList.toString());
 
         //유니크 필드 타입, 변수명
@@ -93,7 +95,7 @@ public class GenerateXmlSource {
                         .replace("{{targetFieldOfInsert}}", FieldUtil.getTargetFieldOfInsert(tableDataList))
                         .replace("{{targetFieldOfUpdate}}", FieldUtil.getTargetFieldOfUpdate(tableDataList));
 
-                stringBuilder.append(temp).append(System.getProperty("line.separator"));
+                stringBuilder.append(temp).append(System.lineSeparator());
 
             }
 

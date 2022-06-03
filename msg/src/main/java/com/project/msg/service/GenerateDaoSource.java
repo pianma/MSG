@@ -15,13 +15,11 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class GenerateControllerSource {
+public class GenerateDaoSource {
 
     private final TableDao tableDao;
 
     public String generate(FileInfoDto fileInfoDto) {
-
-        log.info("fileInfoDto.getPath():" + fileInfoDto.getPath());
 
         //1. 테이블 정보 얻기
         TableDto tableDto = new TableDto();
@@ -31,9 +29,9 @@ public class GenerateControllerSource {
         List<TableDto> tableDataList = tableDao.selectTableData(tableDto);
         log.info(tableDataList.toString());
 
-        //유니크 키 타입, 변수명
+        //유니크 필드 타입, 변수명
         List<TableDto> primaryFieldList = tableDataList.stream().filter(column -> column.getKey().equals("PRI")).collect(Collectors.toList());
-        log.info("primaryField.toString()="+primaryFieldList.toString());
+        log.info("primaryField="+primaryFieldList.toString());
 
         //2. 키워드 변환(소문자, 첫글자만 대문자), 패키지 경로 변환
 
@@ -44,56 +42,47 @@ public class GenerateControllerSource {
         String path = fileInfoDto.getPath().trim().toLowerCase().replace("-",".");
         String filePathWithSeparator = path.replace(".", File.separator);
 
+        //테이블 이름
+        String tableName = fileInfoDto.getTableName();
+
         //3. 컨트롤러 소스파일 생성
 
-//        String filePath = "src" + File.separator
-//                + "main" + File.separator
-//                + "java" + File.separator
-//                + "com" + File.separator          //패키지 경로 ~
-//                + "project" + File.separator
-//                + "target" + File.separator
-//                + "controller" + File.separator; //역할 경로
-
         String filePath = "src" + File.separator
-                        + "main" + File.separator
-                        + "java" + File.separator
-                        + filePathWithSeparator + File.separator
-                        + "controller" + File.separator; //'컨트롤러'
-
-
-        File javaFile = new File(filePath);
-
-        if (!javaFile.exists()) {
-
-            javaFile.mkdirs();
-            log.info("생성 경로: " + javaFile.getPath());
-
-        } else {
-            log.info("이미 경로 존재: "+javaFile.getPath());
-        }
+                + "main" + File.separator
+                + "java" + File.separator
+                + filePathWithSeparator + File.separator
+                + "dao" + File.separator;
 
         //리소스 경로
         String resourcePath = "src" + File.separator
                 + "main" + File.separator
                 + "resources" + File.separator
-                + "templates" + File.separator
-                + "controller.mustache";
+                + "templates" + File.separator;
+
+        File javaFile = new File(filePath);
+
+        if (!javaFile.exists()) {
+            javaFile.mkdirs();
+            log.info("생성 경로: " + javaFile.getPath());
+        } else {
+            log.info("이미 경로 존재: "+ javaFile.getPath());
+        }
 
         String line = "";
         StringBuilder stringBuilder = new StringBuilder();
 
         try (
-                BufferedReader bufferedReader = new BufferedReader(new FileReader(resourcePath));
-                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath + firstLetterUpperKeyword +"Controller.java"));
+                BufferedReader bufferedReader = new BufferedReader(new FileReader(resourcePath + "dao.mustache"));
+                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath + firstLetterUpperKeyword +"Dao.java"));
         ) {
 
 
             for (int i = 1; (line = bufferedReader.readLine()) != null; i++) {
 
                 String temp = line
-                        .replace("{{basicPath}}", path)
+                        .replace("{{keyword}}", keyword)
                         .replace("{{upperKeyword}}", firstLetterUpperKeyword)
-                        .replace("{{keyword}}", keyword);
+                        .replace("{{basicPath}}", path);
 
                 stringBuilder.append(temp).append(System.lineSeparator());
 
@@ -114,5 +103,6 @@ public class GenerateControllerSource {
 
         return stringBuilder.toString();
     }
-}
 
+
+}

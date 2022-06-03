@@ -9,7 +9,7 @@ import java.util.List;
 public class FieldUtil {
 
 
-    public static String getPrimaryFieldParameter(List<TableDto> primaryFieldList) { //@PathVariable Integer userno, @PathVariable String another...
+    public static String getPrimaryFieldParameterWithPathVariable(List<TableDto> primaryFieldList) { //@PathVariable Integer userno, @PathVariable String another...
 
         StringBuffer result = new StringBuffer();
 
@@ -21,7 +21,7 @@ public class FieldUtil {
             }
         }
 
-        log.info("getPrimaryFieldParameter: "+result);
+        log.info("getPrimaryFieldParameterWithPathVariable: "+result);
 
         return result.toString();
     }
@@ -152,5 +152,38 @@ public class FieldUtil {
         return result.toString();
     }
 
+    public static String getPrimaryFieldParameterDto(List<TableDto> primaryFieldList) { //Integer userno, ...
+
+        StringBuffer result = new StringBuffer();
+
+        for (int i = 0; i < primaryFieldList.size(); i++) {
+            result.append(primaryFieldList.get(i).getJavaType()+" "+primaryFieldList.get(i).getField().toLowerCase());
+
+            if(i != primaryFieldList.size()-1){
+                result.append(", ");
+            }
+        }
+
+        log.info("getPrimaryFieldParameterDto: "+result);
+
+        return result.toString();
+    }
+
+    public static String getParameterOfPrimaryField(List<TableDto> primaryFieldList) { //Integer userno, String anotherUniqueField...
+
+        StringBuffer result = new StringBuffer();
+
+        for (int i = 0; i < primaryFieldList.size(); i++) {
+            result.append(primaryFieldList.get(i).getJavaType()+" "+primaryFieldList.get(i).getField().toLowerCase());
+
+            if(i != primaryFieldList.size() - 1 ){
+                result.append(", ");
+            }
+        }
+
+        log.info("getParameterOfPrimaryField: "+result);
+
+        return result.toString();
+    }
 
 }

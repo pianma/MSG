@@ -25,10 +25,12 @@ public class GenerateDtoSource {
 
     public String generate(FileInfoDto fileInfoDto) {
 
-
-
         //1. 테이블 정보 얻기
-        List<TableDto> tableDataList = tableDao.selectTableData(fileInfoDto.getTableName());
+        TableDto tableDto = new TableDto();
+        tableDto.setSchema(fileInfoDto.getSchema());
+        tableDto.setTableName(fileInfoDto.getTableName());
+
+        List<TableDto> tableDataList = tableDao.selectTableData(tableDto);
         log.info(tableDataList.toString());
 
         //유니크 키 타입, 변수명

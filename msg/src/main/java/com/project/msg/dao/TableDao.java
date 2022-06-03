@@ -28,9 +28,9 @@ public class TableDao {
         this.sqlSession = sqlSession;
     }
 
-    public List<TableDto> selectTableData(String tableName){
+    public List<TableDto> selectTableData(TableDto tableDto){
 
-        List<TableDto> tableDtoList = sqlSession.selectList("mapper.table.selectTableData", tableName);
+        List<TableDto> tableDtoList = sqlSession.selectList("mapper.table.selectTableData", tableDto);
 
         //자바 타입
         tableDtoList.stream().forEach(column -> { column.setJavaType(column.getType()

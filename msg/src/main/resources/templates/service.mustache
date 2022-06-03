@@ -1,6 +1,6 @@
 package {{basicPath}}.service;
 
- import {{basicPath}}.dao.IndexDao;
+ import {{basicPath}}.dao.{{upperKeyword}}Dao;
  import {{basicPath}}.dto.{{upperKeyword}}Dto;
  import lombok.RequiredArgsConstructor;
  import lombok.extern.slf4j.Slf4j;
@@ -21,8 +21,8 @@ public class {{upperKeyword}}Service{
         return {{keyword}}List;
     }
 
-    public {{upperKeyword}}Dto get{{upperKeyword}}Data({{primaryFieldParameter}}) {
-        return {{keyword}}Dao.select{{upperKeyword}}Data({{primaryFieldVariable}});
+    public {{upperKeyword}}Dto get{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto) {
+        return {{keyword}}Dao.select{{upperKeyword}}Data({{keyword}}Dto);
     }
 
     public Integer add{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto) {
@@ -33,9 +33,11 @@ public class {{upperKeyword}}Service{
         return {{keyword}}Dao.update{{upperKeyword}}Data({{keyword}}Dto);
     }
 
-    public Integer delete{{upperKeyword}}Data({{primaryFieldParameter}}) {
-        return {{keyword}}Dao.delete{{upperKeyword}}Data({{primaryFieldVariable}});
+    public Integer delete{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto) {
+        return {{keyword}}Dao.delete{{upperKeyword}}Data({{keyword}}Dto);
     }
-        }
+
+}
+
 
 

@@ -16,13 +16,11 @@ public class MemberSerivceUsingDao {
     private final IndexDao indexDao;
 
     public List<UserDto> getMemberList() {
-        List<UserDto> memberList = indexDao.selectMemberList();
-        log.info(memberList.toString());
-        return memberList;
+        return indexDao.selectMemberList();
     }
 
-    public UserDto getMemberData(Integer userNo) {
-        return indexDao.selectMemberData(userNo);
+    public UserDto getMemberData(UserDto userDto) {
+        return indexDao.selectMemberData(userDto);
     }
 
     public Integer addMemberData(UserDto userDto) {
@@ -33,8 +31,8 @@ public class MemberSerivceUsingDao {
         return indexDao.updateMemberData(userDto);
     }
 
-    public Integer deleteMemberData(Integer userNo) {
-        return indexDao.deleteMemberData(userNo);
+    public Integer deleteMemberData(UserDto userDto) {
+        return indexDao.deleteMemberData(userDto);
     }
 
 }

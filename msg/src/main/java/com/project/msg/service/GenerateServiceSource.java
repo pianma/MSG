@@ -24,10 +24,12 @@ public class GenerateServiceSource {
 
     public String generate(FileInfoDto fileInfoDto) {
 
-        log.info("fileInfoDto.getPath():" + fileInfoDto.getPath());
-
         //1. 테이블 정보 얻기
-        List<TableDto> tableDataList = tableDao.selectTableData(fileInfoDto.getTableName());
+        TableDto tableDto = new TableDto();
+        tableDto.setSchema(fileInfoDto.getSchema());
+        tableDto.setTableName(fileInfoDto.getTableName());
+
+        List<TableDto> tableDataList = tableDao.selectTableData(tableDto);
         log.info(tableDataList.toString());
 
         //유니크 키 타입, 변수명
@@ -57,7 +59,7 @@ public class GenerateServiceSource {
                 + "main" + File.separator
                 + "java" + File.separator
                 + filePathWithSeparator + File.separator
-                + "service" + File.separator; //'컨트롤러'
+                + "service" + File.separator;
 
 
         File javaFile = new File(filePath);
@@ -93,11 +95,12 @@ public class GenerateServiceSource {
                         .replace("{{basicPath}}", path)
                         .replace("{{upperKeyword}}", firstLetterUpperKeyword)
                         .replace("{{keyword}}", keyword)
-                        .replace("{{primaryFieldParameter}}", FieldUtil.getPrimaryFieldParameter(primaryFieldList))
-                        .replace("{{primaryFieldVariable}}", FieldUtil.getPrimaryFieldVariable(primaryFieldList));
+                        .replace("{{primaryFieldParameter}}", FieldUtil.getParameterOfPrimaryField(primaryFieldList))
+                        .replace("{{primaryFieldVariable}}", FieldUtil.getPrimaryFieldVariable(primaryFieldList))
+                        .replace("{{primaryFieldVariableWithBraces}}", FieldUtil.getPrimaryFieldVariableWithBraces(primaryFieldList));
 
+                stringBuilder.append(temp).append(System.lineSeparator());
 
-                stringBuilder.append(temp).append('\n');
 
             }
 

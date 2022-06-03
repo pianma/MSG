@@ -1,30 +1,27 @@
 package com.project.msg.controller;
 
-import com.project.msg.dto.TableDto;
 import com.project.msg.dto.UserDto;
 import com.project.msg.service.MemberSerivceUsingDao;
-import com.project.msg.service.TableService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RequestMapping("/dao")
-@RestController()
+@RestController
 @RequiredArgsConstructor
 public class MemberControllerUsingDao {
 
     private final MemberSerivceUsingDao memberSerivceUsingDao;
-    private final TableService tableService;
 
     @GetMapping("/member/all")
     public List<UserDto> getMemberList(){
         return memberSerivceUsingDao.getMemberList();
     }
 
-    @GetMapping("/member/{userNo}")
-    public UserDto getMemberData(@PathVariable Integer userNo){
-        return memberSerivceUsingDao.getMemberData(userNo);
+    @GetMapping("/member")
+    public UserDto getMemberData(UserDto userDto){
+        return memberSerivceUsingDao.getMemberData(userDto);
     }
 
     @PostMapping("/member")
@@ -37,15 +34,11 @@ public class MemberControllerUsingDao {
         return memberSerivceUsingDao.modifyMemberData(userDto);
     }
 
-    @DeleteMapping("/member/{userNo}")
-    public int deleteMemberData(@PathVariable Integer userNo){
-        return memberSerivceUsingDao.deleteMemberData(userNo);
+    @DeleteMapping("/member")
+    public int deleteMemberData(UserDto userDto){
+        return memberSerivceUsingDao.deleteMemberData(userDto);
     }
 
-    @GetMapping("/table/{tableName}")
-    public List<TableDto> getTableDataList(@PathVariable String tableName){
-        return tableService.getTableDataList(tableName);
-    }
 
 
 }
