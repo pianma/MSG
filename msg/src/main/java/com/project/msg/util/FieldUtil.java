@@ -26,6 +26,25 @@ public class FieldUtil {
         return result.toString();
     }
 
+    public static String getTypeWithField(List<TableDto> tableDataList) { //@PathVariable Integer userno, @PathVariable String another...
+
+
+        StringBuffer result = new StringBuffer();
+
+        for (int i = 0; i < tableDataList.size(); i++) {
+            result.append("private "+tableDataList.get(i).getJavaType()+" "+tableDataList.get(i).getField().toLowerCase());
+
+            if(i != tableDataList.size() - 1 ){
+                result.append(System.lineSeparator()).append(System.lineSeparator());
+
+            }
+        }
+
+        log.info("getTypeWithField: "+result);
+
+        return result.toString();
+    }
+
     public static String getPrimaryFieldVariable(List<TableDto> primaryFieldList) {  //userno, another...
 
         StringBuffer result = new StringBuffer();
@@ -133,20 +152,5 @@ public class FieldUtil {
         return result.toString();
     }
 
-    public static String getPrimaryFieldParameterDto(List<TableDto> primaryFieldList) { //@PathVariable Integer userno, ...
 
-        StringBuffer result = new StringBuffer();
-
-        for (int i = 0; i < primaryFieldList.size(); i++) {
-            result.append(primaryFieldList.get(i).getJavaType()+" "+primaryFieldList.get(i).getField().toLowerCase());
-
-            if(i != primaryFieldList.size()-1){
-                result.append(", ");
-            }
-        }
-
-        log.info("getPrimaryFieldParameter: "+result);
-
-        return result.toString();
-    }
 }

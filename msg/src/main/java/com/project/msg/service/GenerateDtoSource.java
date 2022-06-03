@@ -25,7 +25,7 @@ public class GenerateDtoSource {
 
     public String generate(FileInfoDto fileInfoDto) {
 
-        log.info("fileInfoDto.getPath():" + fileInfoDto.getPath());
+
 
         //1. 테이블 정보 얻기
         List<TableDto> tableDataList = tableDao.selectTableData(fileInfoDto.getTableName());
@@ -39,7 +39,7 @@ public class GenerateDtoSource {
 
         String keyword = fileInfoDto.getKeyword().trim().toLowerCase();
         String firstLetterUpperKeyword = keyword.substring(0, 1).toUpperCase() + keyword.substring(1);
-        String upperKeyword = keyword.toUpperCase();
+
 
         String path = fileInfoDto.getPath().trim().toLowerCase().replace("-",".");
         String filePathWithSeparator = path.replace(".", File.separator);
@@ -58,7 +58,7 @@ public class GenerateDtoSource {
                 + "main" + File.separator
                 + "java" + File.separator
                 + filePathWithSeparator + File.separator
-                + "service" + File.separator; //'컨트롤러'
+                + "dto" + File.separator; //'컨트롤러'
 
 
         File javaFile = new File(filePath);
@@ -77,14 +77,14 @@ public class GenerateDtoSource {
                 + "main" + File.separator
                 + "resources" + File.separator
                 + "templates" + File.separator
-                + "service.mustache";
+                + "dto.mustache";
 
         String line = "";
         StringBuilder stringBuilder = new StringBuilder();
 
         try (
                 BufferedReader bufferedReader = new BufferedReader(new FileReader(resourcePath));
-                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath + firstLetterUpperKeyword +"Service.java"));
+                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath + firstLetterUpperKeyword +"Dto.java"));
         ) {
 
 
@@ -93,12 +93,9 @@ public class GenerateDtoSource {
                 String temp = line
                         .replace("{{basicPath}}", path)
                         .replace("{{upperKeyword}}", firstLetterUpperKeyword)
-                        .replace("{{keyword}}", keyword)
-                        .replace("{{primaryFieldParameterDto}}", FieldUtil.getPrimaryFieldParameterDto(primaryFieldList))
-                        .replace("{{primaryFieldVariable}}", FieldUtil.getPrimaryFieldVariable(primaryFieldList))
-                        .replace("{{primaryFieldVariableWithBraces}}", FieldUtil.getPrimaryFieldVariableWithBraces(primaryFieldList));
+                        .replace("{{typeWithKeyword}}", FieldUtil.getTypeWithField(tableDataList));
 
-                stringBuilder.append(temp).append(System.getProperty("line.separator"));
+                stringBuilder.append(temp).append(System.lineSeparator());
 
             }
 
