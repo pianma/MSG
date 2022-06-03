@@ -1,10 +1,7 @@
 package com.project.msg.controller;
 
 import com.project.msg.dto.FileInfoDto;
-import com.project.msg.service.GenerateControllerSource;
-import com.project.msg.service.GenerateDaoSource;
-import com.project.msg.service.GenerateServiceSource;
-import com.project.msg.service.GenerateXmlSource;
+import com.project.msg.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -24,6 +21,7 @@ public class MsgRestController {
     private final GenerateXmlSource generateXmlSource;
     private final GenerateDaoSource generateDaoSource;
 
+
     @GetMapping("generate-all")
     public ResponseEntity<FileInfoDto> generateAll(FileInfoDto fileInfoDto) {
 
@@ -40,6 +38,7 @@ public class MsgRestController {
         return new ResponseEntity<FileInfoDto>(fileInfoDto, HttpStatus.OK);
 
     }
+
 
     @GetMapping("generate")
     public ResponseEntity<FileInfoDto> generateSource(FileInfoDto fileInfoDto) {
