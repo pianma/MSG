@@ -26,9 +26,8 @@ public class IndexDao {
         return sqlSession.selectList("mapper.member.selectMemberList");
     }
 
-    public UserDto selectMemberData(Integer userNo) {
-        UserDto userDto = sqlSession.selectOne("mapper.member.selectMemberData", userNo);
-        return userDto;
+    public UserDto selectMemberData(UserDto userDto) {
+        return sqlSession.selectOne("mapper.member.selectMemberData", userDto);
     }
 
     public Integer insertMemberData(UserDto userDto) {
@@ -39,7 +38,7 @@ public class IndexDao {
         return sqlSession.update("mapper.member.updateMemberData", userDto);
     }
 
-    public Integer deleteMemberData(Integer userNo) {
-        return sqlSession.delete("mapper.member.deleteMemberData", userNo);
+    public Integer deleteMemberData(UserDto userDto) {
+        return sqlSession.delete("mapper.member.deleteMemberData", userDto);
     }
 }

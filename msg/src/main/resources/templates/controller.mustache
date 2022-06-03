@@ -18,9 +18,9 @@ public class {{upperKeyword}}Controller {
         return {{keyword}}Service.get{{upperKeyword}}List();
     }
 
-    @GetMapping("/{{keyword}}/{{primaryFieldVariableWithBraces}}")
-    public {{upperKeyword}}Dto get{{upperKeyword}}Data({{primaryFieldParameterWithPathVariable}}){
-        return {{keyword}}Service.get{{upperKeyword}}Data({{primaryFieldVariable}});
+    @GetMapping("/{{keyword}}")
+    public {{upperKeyword}}Dto get{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto){
+        return {{keyword}}Service.get{{upperKeyword}}Data({{keyword}}Dto);
     }
 
     @PostMapping("/{{keyword}}")
@@ -33,8 +33,8 @@ public class {{upperKeyword}}Controller {
         return {{keyword}}Service.modify{{upperKeyword}}Data({{keyword}}Dto);
     }
 
-    @DeleteMapping("/{{keyword}}/{{primaryFieldVariableWithBraces}}")
-    public int delete{{upperKeyword}}Data({{primaryFieldParameterWithPathVariable}}){
-        return {{keyword}}Service.delete{{upperKeyword}}Data({{primaryFieldVariable}});
+    @DeleteMapping("/{{keyword}}")
+    public int delete{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto){
+        return {{keyword}}Service.delete{{upperKeyword}}Data({{keyword}}Dto);
     }
 }
