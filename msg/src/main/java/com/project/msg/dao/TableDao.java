@@ -38,6 +38,8 @@ public class TableDao {
                                                                         .replace("long","Long")
                                                                         .replace("varchar","String")
                                                                         .replace("char","String")
+                                                                        .replace("mediumtext","String")
+                                                                        .replace("mediumtext","String")
                                                                         .replace("datetime","java.sql.Timestamp"));
         });
 

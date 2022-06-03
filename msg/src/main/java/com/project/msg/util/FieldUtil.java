@@ -32,7 +32,7 @@ public class FieldUtil {
         StringBuffer result = new StringBuffer();
 
         for (int i = 0; i < tableDataList.size(); i++) {
-            result.append("private "+tableDataList.get(i).getJavaType()+" "+tableDataList.get(i).getField().toLowerCase());
+            result.append("private "+tableDataList.get(i).getJavaType()+" "+tableDataList.get(i).getField().toLowerCase()+";");
 
             if(i != tableDataList.size() - 1 ){
                 result.append(System.lineSeparator()).append(System.lineSeparator());

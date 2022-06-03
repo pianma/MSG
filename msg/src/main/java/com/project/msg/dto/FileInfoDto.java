@@ -31,9 +31,6 @@ public class FileInfoDto {
     private String path;
     private String files;
 
-
-    private List<TableDto> fieldDataList = new ArrayList<>();
-
     private String controller;
     private String service;
     private String dao;

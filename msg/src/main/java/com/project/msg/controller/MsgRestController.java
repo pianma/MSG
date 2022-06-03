@@ -20,6 +20,8 @@ public class MsgRestController {
     private final GenerateServiceSource generateServiceSource;
     private final GenerateXmlSource generateXmlSource;
     private final GenerateDaoSource generateDaoSource;
+    private final GenerateDtoSource generateDtoSource;
+    private final GenerateMybatisSource generateMybatisSource;
 
 
     @GetMapping("generate-all")
@@ -29,11 +31,15 @@ public class MsgRestController {
         String service = generateServiceSource.generate(fileInfoDto);
         String xml = generateXmlSource.generate(fileInfoDto);
         String dao = generateDaoSource.generate(fileInfoDto);
+        String dto = generateDtoSource.generate(fileInfoDto);
+        String config = generateMybatisSource.generate(fileInfoDto);
 
         fileInfoDto.setController(controller);
         fileInfoDto.setService(service);
         fileInfoDto.setXml(xml);
         fileInfoDto.setDao(dao);
+        fileInfoDto.setDto(dto);
+        fileInfoDto.setConfig(config);
 
         return new ResponseEntity<FileInfoDto>(fileInfoDto, HttpStatus.OK);
 
@@ -46,7 +52,7 @@ public class MsgRestController {
         log.info(fileInfoDto.toString());
 
         String fileList = fileInfoDto.getFiles();
-        StringTokenizer stringTokenizer = new StringTokenizer(fileList);
+        StringTokenizer stringTokenizer = new StringTokenizer(fileList,"-");
 
         String controller="";
         String service="";
@@ -58,6 +64,7 @@ public class MsgRestController {
         while(stringTokenizer.hasMoreTokens()){
 
             String file = stringTokenizer.nextToken();
+            log.info(file);
 
             if(file.equals("controller")){
                 controller = generateControllerSource.generate(fileInfoDto);
@@ -72,10 +79,10 @@ public class MsgRestController {
                 xml = generateXmlSource.generate(fileInfoDto);
             }
             if(file.equals("dto")){
-//                dto = generateDtoSource.generate(fileInfoDto);
+                dto = generateDtoSource.generate(fileInfoDto);
             }
             if(file.equals("config")){
-//                config = generateConfigSource.generate(fileInfoDto);
+                config = generateMybatisSource.generate(fileInfoDto);
             }
 
         }
@@ -84,8 +91,8 @@ public class MsgRestController {
         fileInfoDto.setService(service);
         fileInfoDto.setXml(xml);
         fileInfoDto.setDao(dao);
-//        fileInfoDto.setDto(dto);
-//        fileInfoDto.setConfig(config);
+        fileInfoDto.setDto(dto);
+        fileInfoDto.setConfig(config);
 
 
         return new ResponseEntity<FileInfoDto>(fileInfoDto, HttpStatus.OK);
