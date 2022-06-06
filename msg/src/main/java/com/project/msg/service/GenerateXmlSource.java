@@ -80,7 +80,7 @@ public class GenerateXmlSource {
 
         try (
                 BufferedReader bufferedReader = new BufferedReader(new FileReader(resourcePath + "queryXml.mustache"));
-                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(xmlPath + "sql-"+ keyword +".xml"));
+                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(xmlPath + keyword +".xml"));
         ) {
 
 

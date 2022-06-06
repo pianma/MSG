@@ -3,7 +3,10 @@ package com.project.msg.util;
 import com.project.msg.dto.TableDto;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 public class FieldUtil {
@@ -26,13 +29,24 @@ public class FieldUtil {
         return result.toString();
     }
 
-    public static String getTypeWithField(List<TableDto> tableDataList) { //@PathVariable Integer userno, @PathVariable String another...
+    public static String getTypeWithField(List<TableDto> tableDataList) { //Integer userno, String another...
 
 
         StringBuffer result = new StringBuffer();
 
         for (int i = 0; i < tableDataList.size(); i++) {
-            result.append("private "+tableDataList.get(i).getJavaType()+" "+tableDataList.get(i).getField().toLowerCase()+";");
+            String javaType = tableDataList.get(i).getJavaType();
+
+            if(javaType.indexOf("java.lang") != -1){
+                javaType = javaType.replace("java.lang.","");
+            }else {
+                javaType = javaType.substring(javaType.lastIndexOf(".") + 1);
+            }
+
+            log.info("getTypeWithField javaType="+javaType);
+
+            result.append("\t ");
+            result.append("private "+javaType+" "+tableDataList.get(i).getField().toLowerCase()+";");
 
             if(i != tableDataList.size() - 1 ){
                 result.append(System.lineSeparator()).append(System.lineSeparator());
@@ -40,7 +54,37 @@ public class FieldUtil {
             }
         }
 
-        log.info("getTypeWithField: "+result);
+        log.info(""+result);
+
+        return result.toString();
+    }
+
+    public static String getImportClassList(List<TableDto> tableDataList) {
+
+        StringBuffer result = new StringBuffer();
+        Set<String> importSet = new HashSet<String>();
+
+        for (int i = 0; i < tableDataList.size(); i++) {
+            importSet.add(tableDataList.get(i).getJavaType());
+        }
+        log.info("importSet:"+importSet.toString());
+
+        Iterator<String> iterator = importSet.iterator();
+
+        while(iterator.hasNext()){
+
+            String javaType = iterator.next();
+
+            if(javaType.indexOf("java.lang") != -1){
+                continue;
+            }
+//            log.info("getImportClassList: "+javaType);
+
+            result.append("import "+javaType+";");
+            result.append(System.lineSeparator());
+        }
+
+        log.info(""+result);
 
         return result.toString();
     }
@@ -109,7 +153,7 @@ public class FieldUtil {
 
             if(tableDataList.get(i).getExtra().equals("auto_increment")){
                 // 기본키 필드가 auto_increment 일 경우 null 로 설정
-                result.append("null");
+                result.append("null, ");
                 continue;
             }
 

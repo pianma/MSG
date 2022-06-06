@@ -17,30 +17,30 @@ public class MybatisConfig {
 
 private final ApplicationContext context;
 
-@Bean
-public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+    @Bean
+    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
 
-SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+        SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 
-sessionFactory.setDataSource(dataSource);
-sessionFactory.setMapperLocations(context.getResources("classpath:mapper/*.xml"));
-sessionFactory.setTypeAliasesPackage( "{{basicPath}}.dto" );
+        sessionFactory.setDataSource(dataSource);
+        sessionFactory.setMapperLocations(context.getResources("classpath:mapper/*.xml"));
+        sessionFactory.setTypeAliasesPackage( "{{basicPath}}.dto" );
 
-return sessionFactory.getObject();
-}
+        return sessionFactory.getObject();
+    }
 
-@Bean
-public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) throws Exception {
-SqlSessionTemplate sqlSessionTemplate = new SqlSessionTemplate(sqlSessionFactory);
-//        sqlSessionTemplate.getConfiguration().setMapUnderscoreToCamelCase(true);
+    @Bean
+    public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) throws Exception {
+        SqlSessionTemplate sqlSessionTemplate = new SqlSessionTemplate(sqlSessionFactory);
+        //        sqlSessionTemplate.getConfiguration().setMapUnderscoreToCamelCase(true);
 
-return sqlSessionTemplate;
-}
+        return sqlSessionTemplate;
+    }
 
-@Bean
-public DataSourceTransactionManager transactionManager(DataSource dataSource) {
-return new DataSourceTransactionManager(dataSource);
-}
+    @Bean
+    public DataSourceTransactionManager transactionManager(DataSource dataSource) {
+        return new DataSourceTransactionManager(dataSource);
+    }
 }
 
 
