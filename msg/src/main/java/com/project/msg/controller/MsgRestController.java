@@ -2,6 +2,9 @@ package com.project.msg.controller;
 
 import com.project.msg.dto.FileInfoDto;
 import com.project.msg.service.*;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -25,6 +28,7 @@ public class MsgRestController {
 
 
     @GetMapping("generate-all")
+    @ApiOperation(value = "전체 소스 파일 생성", notes = "전체 소스파일을 생성한다.")
     public ResponseEntity<FileInfoDto> generateAll(FileInfoDto fileInfoDto) {
 
         String controller = generateControllerSource.generate(fileInfoDto);
@@ -47,6 +51,10 @@ public class MsgRestController {
 
 
     @GetMapping("generate")
+    @ApiOperation(value = "원하는 소스 파일만 생성", notes = "소스 파일 종류를 입력하여 원하는 소스 파일을 생성한다.")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "files", value = "생성할 소스 파일종류(controller-service-dao-dto-xml)"),
+    })
     public ResponseEntity<FileInfoDto> generateSource(FileInfoDto fileInfoDto) {
 
         log.info(fileInfoDto.toString());
