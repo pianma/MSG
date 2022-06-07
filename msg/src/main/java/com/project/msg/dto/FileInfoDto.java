@@ -27,19 +27,19 @@ public class FileInfoDto {
      * 각각의 파일 내용
      * */
 
-    @ApiModelProperty(required = true, example = "키워드")
+    @ApiModelProperty(example = "키워드")
     private String keyword;
 
-    @ApiModelProperty(required = true, example = "스키마명" )
+    @ApiModelProperty(example = "스키마명" )
     private String schema;
 
-    @ApiModelProperty(required = true, example = "테이블명")
+    @ApiModelProperty(example = "테이블명")
     private String tableName;
 
-    @ApiModelProperty(required = true, example = "패키지 경로(com-project-target)")
+    @ApiModelProperty(example = "패키지 경로(com-project-target)")
     private String path;
 
-    @ApiModelProperty(required = false, example = "생성할 소스파일(controller-service-dao-dto-xml-config)")
+    @ApiModelProperty(example = "생성할 소스파일(controller-service-dao-dto-xml-config)")
     private String files;
 
     private String controller;

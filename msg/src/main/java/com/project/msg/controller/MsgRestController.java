@@ -30,7 +30,14 @@ public class MsgRestController {
 
     @GetMapping("generate-all")
     @ApiOperation(value = "전체 소스 파일 생성", notes = "전체 소스파일을 생성한다.")
-    public ResponseEntity<FileInfoDto> generateAll(FileInfoDto fileInfoDto) {
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "keyword", value = "키워드", paramType = "query", required = true),
+            @ApiImplicitParam(name = "schema", value = "스키마명", paramType = "query", required = true),
+            @ApiImplicitParam(name = "tableName", value = "테이블명", paramType = "query", required = true),
+            @ApiImplicitParam(name = "path", value = "패키지 경로(com-project-target)", paramType = "query", required = true),
+
+    })
+    public ResponseEntity<FileInfoDto> generateAll(@ApiIgnore FileInfoDto fileInfoDto) {
 
         String controller = generateControllerSource.generate(fileInfoDto);
         String service = generateServiceSource.generate(fileInfoDto);
