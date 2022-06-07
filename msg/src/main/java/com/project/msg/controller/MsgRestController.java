@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.StringTokenizer;
 
@@ -53,9 +54,13 @@ public class MsgRestController {
     @GetMapping("generate")
     @ApiOperation(value = "원하는 소스 파일만 생성", notes = "소스 파일 종류를 입력하여 원하는 소스 파일을 생성한다.")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "files", value = "생성할 소스 파일종류(controller-service-dao-dto-xml)"),
+            @ApiImplicitParam(name = "keyword", value = "키워드", paramType = "query", required = true),
+            @ApiImplicitParam(name = "schema", value = "스키마명", paramType = "query", required = true),
+            @ApiImplicitParam(name = "tableName", value = "테이블명", paramType = "query", required = true),
+            @ApiImplicitParam(name = "path", value = "패키지 경로(com-project-target)", paramType = "query", required = true),
+            @ApiImplicitParam(name = "files", value = "생성할 소스 파일종류(controller-service-dao-dto-xml-config)", paramType = "query", required = true)
     })
-    public ResponseEntity<FileInfoDto> generateSource(FileInfoDto fileInfoDto) {
+    public ResponseEntity<FileInfoDto> generateSource(@ApiIgnore FileInfoDto fileInfoDto) {
 
         log.info(fileInfoDto.toString());
 
