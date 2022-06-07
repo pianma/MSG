@@ -22,6 +22,8 @@ public class UserDto {  //예시 : com_user 테이블 Dto
     private String deleteFlag;
 
 
+
+
 }
 
 
