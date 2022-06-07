@@ -4,12 +4,14 @@ import com.project.msg.dto.UserDto;
 import com.project.msg.service.MemberSerivceUsingDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 
 @RequestMapping("/dao")
 @RestController
 @RequiredArgsConstructor
+@ApiIgnore
 public class MemberControllerUsingDao {
 
     private final MemberSerivceUsingDao memberSerivceUsingDao;
