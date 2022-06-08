@@ -21,9 +21,6 @@ public class TableDao {
     private final SqlSessionFactory sqlSessionFactory;
     private final SqlSession sqlSession;
 
-
-
-
     private List<String> getColumnClassName(TableDto tableDto){
 
         List<String> javaTypeList = new ArrayList<String>();
