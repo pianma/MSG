@@ -18,6 +18,12 @@ repositories {
 	mavenCentral()
 }
 
+// jasypt 암호 실행 시점에 전달
+bootRun {
+	systemProperty "jasypt.encryptor.password", findProperty("jasypt.encryptor.password")
+}
+
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
