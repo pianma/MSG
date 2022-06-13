@@ -23,6 +23,9 @@ bootRun {
 	systemProperty "jasypt.encryptor.password", findProperty("jasypt.encryptor.password")
 }
 
+jar {
+	enabled = false
+}
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
