@@ -45,18 +45,14 @@ public class GenerateDtoSource {
 
         String path = fileInfoDto.getPath().trim().toLowerCase().replace("-",".");
         String filePathWithSeparator = path.replace(".", File.separator);
+        String directory = fileInfoDto.getDirectory().replace("-", File.separator);
 
         //3. 컨트롤러 소스파일 생성
+        //C:\프로젝트폴더\src\main\java\패키지구조\키워드\
 
-//        String filePath = "src" + File.separator
-//                + "main" + File.separator
-//                + "java" + File.separator
-//                + "com" + File.separator          //패키지 경로 ~
-//                + "project" + File.separator
-//                + "target" + File.separator
-//                + "service" + File.separator; //역할 경로
-
-        String filePath = "src" + File.separator
+        String filePath = "C:"+ File.separator
+                + directory + File.separator
+                + "src" + File.separator
                 + "main" + File.separator
                 + "java" + File.separator
                 + filePathWithSeparator + File.separator

@@ -18,7 +18,8 @@ public class FileInfoDto {
      * keyword      키워드
      * schema       스키마 이름
      * tableName    테이블명 (대소문자 구분)
-     * path         패키지 경로 (com-project-target)
+     * directory    프로젝트 폴더 위치 (C드라이브) : Sample-another-...
+     * path         기본 패키지 경로 (com-project-target)
      * files        생성해야 될 소스파일 종류 (controller-service-dao-xml-dto-config)
      *
      * 2. 만들어진 파일 정보
@@ -35,6 +36,9 @@ public class FileInfoDto {
 
     @ApiModelProperty(example = "테이블명")
     private String tableName;
+
+    @ApiModelProperty(example = "프로젝트 폴더 위치")
+    private String directory;
 
     @ApiModelProperty(example = "패키지 경로(com-project-target)")
     private String path;
