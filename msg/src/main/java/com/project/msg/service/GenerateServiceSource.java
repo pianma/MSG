@@ -62,6 +62,7 @@ public class GenerateServiceSource {
                            + "main" + File.separator
                            + "java" + File.separator
                            + filePathWithSeparator + File.separator
+                           + keyword + File.separator
                            + "service" + File.separator;
 
 

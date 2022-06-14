@@ -56,6 +56,7 @@ public class GenerateDtoSource {
                           + "main" + File.separator
                           + "java" + File.separator
                           + filePathWithSeparator + File.separator
+                          + keyword + File.separator
                           + "dto" + File.separator; //'컨트롤러'
 
 
