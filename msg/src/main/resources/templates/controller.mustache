@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
+import springfox.documentation.annotations.ApiIgnore;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -27,7 +28,7 @@ public class {{upperKeyword}}Controller {
         {{apiImplicitParamsOfGet}}
     })
     @GetMapping("/{{keyword}}")
-    public {{upperKeyword}}Dto get{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto){
+    public {{upperKeyword}}Dto get{{upperKeyword}}Data(@ApiIgnore {{upperKeyword}}Dto {{keyword}}Dto){
         return {{keyword}}Service.get{{upperKeyword}}Data({{keyword}}Dto);
     }
 
@@ -36,7 +37,7 @@ public class {{upperKeyword}}Controller {
         {{apiImplicitParamsOfPost}}
     })
     @PostMapping("/{{keyword}}")
-    public int add{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto){
+    public int add{{upperKeyword}}Data(@ApiIgnore {{upperKeyword}}Dto {{keyword}}Dto){
         return {{keyword}}Service.add{{upperKeyword}}Data({{keyword}}Dto);
     }
 
@@ -45,7 +46,7 @@ public class {{upperKeyword}}Controller {
         {{apiImplicitParamsOfPut}}
     })
     @PutMapping("/{{keyword}}")
-    public int modify{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto){
+    public int modify{{upperKeyword}}Data(@ApiIgnore {{upperKeyword}}Dto {{keyword}}Dto){
         return {{keyword}}Service.modify{{upperKeyword}}Data({{keyword}}Dto);
     }
 
@@ -54,7 +55,7 @@ public class {{upperKeyword}}Controller {
         {{apiImplicitParamsOfDelete}}
     })
     @DeleteMapping("/{{keyword}}")
-    public int delete{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto){
+    public int delete{{upperKeyword}}Data(@ApiIgnore {{upperKeyword}}Dto {{keyword}}Dto){
         return {{keyword}}Service.delete{{upperKeyword}}Data({{keyword}}Dto);
     }
 }
