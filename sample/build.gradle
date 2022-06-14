@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '2.6.8'
+	id 'org.springframework.boot' version '2.6.7'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 }
@@ -18,17 +18,32 @@ repositories {
 	mavenCentral()
 }
 
+// jasypt 암호 실행 시점에 전달
+bootRun {
+	systemProperty "jasypt.encryptor.password", findProperty("jasypt.encryptor.password")
+}
+
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-mustache'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
-	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	implementation 'org.springframework.boot:spring-boot-starter-mustache'
+//	implementation group: 'org.apache.velocity', name: 'velocity-engine-core', version: '2.3'
+
+//	runtimeOnly 'com.h2database:h2'  //h2 database 임시로 사용.
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+
+	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4'
+
+
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
+

@@ -42,16 +42,20 @@ public class GenerateXmlSource {
 
         String path = fileInfoDto.getPath().trim().toLowerCase().replace("-",".");
         String filePathWithSeparator = path.replace(".", File.separator);
+        String directory = fileInfoDto.getDirectory().replace("-", File.separator);
 
         //테이블 이름
         String tableName = fileInfoDto.getTableName();
 
-        //3. 컨트롤러 소스파일 생성
+       //소스파일 생성
 
-        String filePath = "src" + File.separator
+        String filePath =  "C:"+ File.separator
+                        + directory + File.separator
+                        + "src" + File.separator
                         + "main" + File.separator
                         + "java" + File.separator
                         + filePathWithSeparator + File.separator
+                        + keyword + File.separator
                         + "controller" + File.separator;
 
         //리소스 경로
@@ -61,7 +65,9 @@ public class GenerateXmlSource {
                             + "templates" + File.separator;
 
         //xml 파일 경로
-        String xmlPath = "src" + File.separator
+        String xmlPath = "C:"+ File.separator
+                        + directory + File.separator
+                        + "src" + File.separator
                         + "main" + File.separator
                         + "resources" + File.separator
                         + "mapper" + File.separator;
@@ -90,7 +96,7 @@ public class GenerateXmlSource {
                         .replace("{{keyword}}", keyword)
                         .replace("{{upperKeyword}}", firstLetterUpperKeyword)
                         .replace("{{tableName}}", tableName)
-//                        .replace("{{basicPath}}", path)
+                        .replace("{{basicPath}}", path)
                         .replace("{{whereConditionOfPrimary}}", FieldUtil.getWhereConditionOfPrimary(primaryFieldList))
                         .replace("{{targetFieldOfInsert}}", FieldUtil.getTargetFieldOfInsert(tableDataList))
                         .replace("{{targetFieldOfUpdate}}", FieldUtil.getTargetFieldOfUpdate(tableDataList));

@@ -1,4 +1,4 @@
-package com.project.msg;
+package com.project.sample;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,9 +13,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @Configuration
 public class SwaggerConfig {
-    private static final String API_NAME = "MSG API";
+    private static final String API_NAME = "SAMPLE API";
     private static final String API_VERSION = "0.0.1";
-    private static final String API_DESCRIPTION = "Source Generator API 명세서";
+    private static final String API_DESCRIPTION = "SAMPLE API 명세서";
 
     @Bean
     public Docket api() {
@@ -23,7 +23,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.project.msg"))
+                .apis(RequestHandlerSelectors.basePackage("com.project.sample"))
                 .paths(PathSelectors.any())
                 .build();
     }

@@ -41,16 +41,20 @@ public class GenerateDaoSource {
 
         String path = fileInfoDto.getPath().trim().toLowerCase().replace("-",".");
         String filePathWithSeparator = path.replace(".", File.separator);
+        String directory = fileInfoDto.getDirectory().replace("-", File.separator);
 
         //테이블 이름
         String tableName = fileInfoDto.getTableName();
 
         //3. 컨트롤러 소스파일 생성
 
-        String filePath = "src" + File.separator
+        String filePath = "C:"+ File.separator
+                + directory + File.separator
+                + "src" + File.separator
                 + "main" + File.separator
                 + "java" + File.separator
                 + filePathWithSeparator + File.separator
+                + keyword + File.separator
                 + "dao" + File.separator;
 
         //리소스 경로

@@ -2,10 +2,6 @@ package com.project.msg.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import springfox.documentation.annotations.ApiIgnore;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 public class FileInfoDto {
@@ -18,9 +14,9 @@ public class FileInfoDto {
      * keyword      키워드
      * schema       스키마 이름
      * tableName    테이블명 (대소문자 구분)
-     * directory    프로젝트 폴더 위치 (C드라이브) : Sample-another-...
-     * path         기본 패키지 경로 (com-project-target)
-     * files        생성해야 될 소스파일 종류 (controller-service-dao-xml-dto-config)
+     * directory    프로젝트 폴더 위치 (C드라이브 하위 경로 작성) : Sample-another-...
+     * path         기본 패키지 경로 : com-project-target
+     * files        생성해야 될 소스파일 종류 : controller-service-dao-xml-dto
      *
      * 2. 만들어진 파일 정보
      *
