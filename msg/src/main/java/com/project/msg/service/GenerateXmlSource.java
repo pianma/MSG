@@ -72,7 +72,8 @@ public class GenerateXmlSource {
                         + "resources" + File.separator
                         + "mapper" + File.separator;
 
-        File javaFile = new File(resourcePath);
+
+        File javaFile = new File(xmlPath);
 
         if (!javaFile.exists()) {
             javaFile.mkdirs();

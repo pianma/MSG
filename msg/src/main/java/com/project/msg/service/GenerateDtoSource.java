@@ -93,7 +93,8 @@ public class GenerateDtoSource {
                         .replace("{{basicPath}}", path)
                         .replace("{{upperKeyword}}", firstLetterUpperKeyword)
                         .replace("{{importFieldClass}}", FieldUtil.getImportClassList(tableDataList))
-                        .replace("{{typeWithKeyword}}", FieldUtil.getTypeWithField(tableDataList));
+                        .replace("{{typeWithKeyword}}", FieldUtil.getTypeWithField(tableDataList))
+                        .replace("{{keyword}}", keyword);
 
                 stringBuilder.append(temp).append(System.lineSeparator());
 
