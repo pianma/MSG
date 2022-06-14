@@ -51,12 +51,12 @@ public class GenerateDtoSource {
         //C:\프로젝트폴더\src\main\java\패키지구조\키워드\
 
         String filePath = "C:"+ File.separator
-                + directory + File.separator
-                + "src" + File.separator
-                + "main" + File.separator
-                + "java" + File.separator
-                + filePathWithSeparator + File.separator
-                + "dto" + File.separator; //'컨트롤러'
+                          + directory + File.separator
+                          + "src" + File.separator
+                          + "main" + File.separator
+                          + "java" + File.separator
+                          + filePathWithSeparator + File.separator
+                          + "dto" + File.separator; //'컨트롤러'
 
 
         File javaFile = new File(filePath);

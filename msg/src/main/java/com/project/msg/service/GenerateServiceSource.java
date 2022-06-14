@@ -40,10 +40,11 @@ public class GenerateServiceSource {
 
         String keyword = fileInfoDto.getKeyword().trim().toLowerCase();
         String firstLetterUpperKeyword = keyword.substring(0, 1).toUpperCase() + keyword.substring(1);
-        String upperKeyword = keyword.toUpperCase();
+
 
         String path = fileInfoDto.getPath().trim().toLowerCase().replace("-",".");
         String filePathWithSeparator = path.replace(".", File.separator);
+        String directory = fileInfoDto.getDirectory().replace("-", File.separator);
 
         //3. 컨트롤러 소스파일 생성
 
@@ -55,11 +56,13 @@ public class GenerateServiceSource {
 //                + "target" + File.separator
 //                + "service" + File.separator; //역할 경로
 
-        String filePath = "src" + File.separator
-                + "main" + File.separator
-                + "java" + File.separator
-                + filePathWithSeparator + File.separator
-                + "service" + File.separator;
+        String filePath =  "C:"+ File.separator
+                           + directory + File.separator
+                           + "src" + File.separator
+                           + "main" + File.separator
+                           + "java" + File.separator
+                           + filePathWithSeparator + File.separator
+                           + "service" + File.separator;
 
 
         File javaFile = new File(filePath);
