@@ -43,6 +43,7 @@ public class GenerateControllerSource {
 
         String path = fileInfoDto.getPath().trim().toLowerCase().replace("-",".");
         String filePathWithSeparator = path.replace(".", File.separator);
+        String directory = fileInfoDto.getDirectory().replace("-", File.separator);
 
         //3. 컨트롤러 소스파일 생성
 
@@ -54,10 +55,13 @@ public class GenerateControllerSource {
 //                + "target" + File.separator
 //                + "controller" + File.separator; //역할 경로
 
-        String filePath = "src" + File.separator
+        String filePath = "C:"+ File.separator
+                        + directory + File.separator
+                        +  "src" + File.separator
                         + "main" + File.separator
                         + "java" + File.separator
                         + filePathWithSeparator + File.separator
+                        + keyword + File.separator
                         + "controller" + File.separator; //'컨트롤러'
 
 
@@ -93,7 +97,11 @@ public class GenerateControllerSource {
                 String temp = line
                         .replace("{{basicPath}}", path)
                         .replace("{{upperKeyword}}", firstLetterUpperKeyword)
-                        .replace("{{keyword}}", keyword);
+                        .replace("{{keyword}}", keyword)
+                        .replace("{{apiImplicitParamsOfGet}}", FieldUtil.getApiImplicitParamsOfPrimaryField(primaryFieldList))
+                        .replace("{{apiImplicitParamsOfPost}}", FieldUtil.getApiImplicitParamsForRegistration(tableDataList))
+                        .replace("{{apiImplicitParamsOfPut}}", FieldUtil.getApiImplicitParamsForUpdate(tableDataList))
+                        .replace("{{apiImplicitParamsOfDelete}}", FieldUtil.getApiImplicitParamsOfPrimaryField(primaryFieldList));
 
                 stringBuilder.append(temp).append(System.lineSeparator());
 

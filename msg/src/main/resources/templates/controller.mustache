@@ -3,6 +3,9 @@ package {{basicPath}}.controller;
 import {{basicPath}}.dto.{{upperKeyword}}Dto;
 import {{basicPath}}.service.{{upperKeyword}}Service;
 import lombok.RequiredArgsConstructor;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -13,26 +16,43 @@ public class {{upperKeyword}}Controller {
 
     private final {{upperKeyword}}Service {{keyword}}Service;
 
+    @ApiOperation(value = "{{keyword}}: 전체 조회")
     @GetMapping("/{{keyword}}-all")
     public List<{{upperKeyword}}Dto> get{{upperKeyword}}List(){
         return {{keyword}}Service.get{{upperKeyword}}List();
     }
 
+    @ApiOperation(value = "{{keyword}}: 조회")
+    @ApiImplicitParams({
+        {{apiImplicitParamsOfGet}}
+    })
     @GetMapping("/{{keyword}}")
     public {{upperKeyword}}Dto get{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto){
         return {{keyword}}Service.get{{upperKeyword}}Data({{keyword}}Dto);
     }
 
+    @ApiOperation(value = "{{keyword}}: 등록")
+    @ApiImplicitParams({
+        {{apiImplicitParamsOfPost}}
+    })
     @PostMapping("/{{keyword}}")
     public int add{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto){
         return {{keyword}}Service.add{{upperKeyword}}Data({{keyword}}Dto);
     }
 
+    @ApiOperation(value = "{{keyword}}: 수정")
+    @ApiImplicitParams({
+        {{apiImplicitParamsOfPut}}
+    })
     @PutMapping("/{{keyword}}")
     public int modify{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto){
         return {{keyword}}Service.modify{{upperKeyword}}Data({{keyword}}Dto);
     }
 
+    @ApiOperation(value = "{{keyword}}: 삭제")
+    @ApiImplicitParams({
+        {{apiImplicitParamsOfDelete}}
+    })
     @DeleteMapping("/{{keyword}}")
     public int delete{{upperKeyword}}Data({{upperKeyword}}Dto {{keyword}}Dto){
         return {{keyword}}Service.delete{{upperKeyword}}Data({{keyword}}Dto);

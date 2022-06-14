@@ -34,6 +34,7 @@ public class MsgRestController {
             @ApiImplicitParam(name = "keyword", value = "키워드", paramType = "query", required = true),
             @ApiImplicitParam(name = "schema", value = "스키마명", paramType = "query", required = true),
             @ApiImplicitParam(name = "tableName", value = "테이블명", paramType = "query", required = true),
+            @ApiImplicitParam(name = "directory", value = "프로젝트 폴더 위치", paramType = "query", required = true),
             @ApiImplicitParam(name = "path", value = "패키지 경로(com-project-target)", paramType = "query", required = true),
 
     })
@@ -44,14 +45,14 @@ public class MsgRestController {
         String xml = generateXmlSource.generate(fileInfoDto);
         String dao = generateDaoSource.generate(fileInfoDto);
         String dto = generateDtoSource.generate(fileInfoDto);
-        String config = generateMybatisSource.generate(fileInfoDto);
+//        String config = generateMybatisSource.generate(fileInfoDto);
 
         fileInfoDto.setController(controller);
         fileInfoDto.setService(service);
         fileInfoDto.setXml(xml);
         fileInfoDto.setDao(dao);
         fileInfoDto.setDto(dto);
-        fileInfoDto.setConfig(config);
+//        fileInfoDto.setConfig(config);
 
         return new ResponseEntity<FileInfoDto>(fileInfoDto, HttpStatus.OK);
 
@@ -64,8 +65,9 @@ public class MsgRestController {
             @ApiImplicitParam(name = "keyword", value = "키워드", paramType = "query", required = true),
             @ApiImplicitParam(name = "schema", value = "스키마명", paramType = "query", required = true),
             @ApiImplicitParam(name = "tableName", value = "테이블명", paramType = "query", required = true),
+            @ApiImplicitParam(name = "directory", value = "프로젝트 폴더 위치(C드라이브 하위 경로 작성, Sample-...-...)", paramType = "query", required = true),
             @ApiImplicitParam(name = "path", value = "패키지 경로(com-project-target)", paramType = "query", required = true),
-            @ApiImplicitParam(name = "files", value = "생성할 소스 파일종류(controller-service-dao-dto-xml-config)", paramType = "query", required = true)
+            @ApiImplicitParam(name = "files", value = "생성할 소스 파일종류(controller-service-dao-dto-xml)", paramType = "query", required = true)
     })
     public ResponseEntity<FileInfoDto> generateSource(@ApiIgnore FileInfoDto fileInfoDto) {
 
@@ -79,7 +81,7 @@ public class MsgRestController {
         String dao="";
         String xml="";
         String dto="";
-        String config="";
+//        String config="";
 
         while(stringTokenizer.hasMoreTokens()){
 
@@ -101,9 +103,9 @@ public class MsgRestController {
             if(file.equals("dto")){
                 dto = generateDtoSource.generate(fileInfoDto);
             }
-            if(file.equals("config")){
-                config = generateMybatisSource.generate(fileInfoDto);
-            }
+//            if(file.equals("config")){
+//                config = generateMybatisSource.generate(fileInfoDto);
+//            }
 
         }
 
@@ -112,7 +114,7 @@ public class MsgRestController {
         fileInfoDto.setXml(xml);
         fileInfoDto.setDao(dao);
         fileInfoDto.setDto(dto);
-        fileInfoDto.setConfig(config);
+//        fileInfoDto.setConfig(config);
 
 
         return new ResponseEntity<FileInfoDto>(fileInfoDto, HttpStatus.OK);

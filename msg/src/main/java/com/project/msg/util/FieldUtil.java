@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class FieldUtil {
@@ -25,6 +26,94 @@ public class FieldUtil {
         }
 
         log.info("getPrimaryFieldParameterWithPathVariable: "+result);
+
+        return result.toString();
+    }
+    public static String getApiImplicitParamsOfPrimaryField(List<TableDto> primaryFieldList) { //@ApiImplicitParam(name = "keyword", paramType = "query", required = true),...
+
+        StringBuffer result = new StringBuffer();
+
+        for (int i = 0; i < primaryFieldList.size(); i++) {
+
+            if(i > 0){
+                result.append("\t").append("\t");
+            }
+
+            result.append("@ApiImplicitParam(name = \""+primaryFieldList.get(i).getField().toLowerCase()+"\", paramType = \"query\", required = true)");
+
+            if(i != primaryFieldList.size() - 1 ){
+                result.append(",").append(System.lineSeparator());
+            }
+        }
+
+        log.info("getApiImplicitParamsOfPrimaryField: "+result);
+
+        return result.toString();
+    }
+    public static String getApiImplicitParamsForRegistration(List<TableDto> tableDataList) { //@ApiImplicitParam(name = "keyword", paramType = "query", required = true),...
+
+        StringBuffer result = new StringBuffer();
+
+        // 등록: 기본키 필드가 아니고 동시에 auto_increment 가 아닌 필드는 모두 등록 대상 필드이다.
+        List<TableDto> registrationFieldList = tableDataList.stream().filter(column -> !column.getKey().equals("PRI") && !column.getExtra().equals("auto_increment")).collect(Collectors.toList());
+
+        for (int i = 0; i < registrationFieldList.size(); i++) {
+
+            if(i > 0){
+                result.append("\t").append("\t");
+            }
+
+            result.append("@ApiImplicitParam(name = \"");
+            result.append(registrationFieldList.get(i).getField().toLowerCase());
+            result.append("\"");
+            result.append(",");
+            result.append(" paramType = \"query\"");
+
+            if(registrationFieldList.get(i).getKey().equals("PRI")){
+                result.append(", required = true");
+            }
+
+            result.append(")");
+
+            if(i != registrationFieldList.size() - 1 ){
+                result.append(",").append(System.lineSeparator());
+            }
+        }
+
+        log.info("getApiImplicitParamsForRegistration: "+result);
+
+        return result.toString();
+    }
+    public static String getApiImplicitParamsForUpdate(List<TableDto> tableDataList) { //@ApiImplicitParam(name = "keyword", paramType = "query", required = true),...
+
+        StringBuffer result = new StringBuffer();
+
+        // 수정: 기본키 + 수정대상필드
+
+        for (int i = 0; i < tableDataList.size(); i++) {
+
+            if(i > 0){
+                result.append("\t").append("\t");
+            }
+
+            result.append("@ApiImplicitParam(name = \"");
+            result.append(tableDataList.get(i).getField().toLowerCase());
+            result.append("\"");
+            result.append(",");
+            result.append(" paramType = \"query\"");
+
+            if(tableDataList.get(i).getKey().equals("PRI")){
+                result.append(", required = true");
+            }
+
+            result.append(")");
+
+            if(i != tableDataList.size() - 1 ){
+                result.append(",").append(System.lineSeparator());
+            }
+        }
+
+        log.info("getApiImplicitParamsForUpdate: "+result);
 
         return result.toString();
     }
